@@ -102,7 +102,7 @@
 		298D7CE11BC2CB5A00FD3B3E /* ADNNetServerTrustChain in Resources */ = {isa = PBXBuildFile; fileRef = 298D7CDF1BC2CB5A00FD3B3E /* ADNNetServerTrustChain */; };
 		298D7CE31BC2CB7C00FD3B3E /* HTTPBinOrgServerTrustChain in Resources */ = {isa = PBXBuildFile; fileRef = 298D7CE21BC2CB7C00FD3B3E /* HTTPBinOrgServerTrustChain */; };
 		298D7CE41BC2CB7C00FD3B3E /* HTTPBinOrgServerTrustChain in Resources */ = {isa = PBXBuildFile; fileRef = 298D7CE21BC2CB7C00FD3B3E /* HTTPBinOrgServerTrustChain */; };
-		2995223D1BBF104D00859F49 /* CCAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* CCAFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2995223D1BBF104D00859F49 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		299522531BBF125A00859F49 /* CCAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522461BBF125A00859F49 /* CCAFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		299522541BBF125A00859F49 /* CCAFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 299522471BBF125A00859F49 /* CCAFHTTPSessionManager.m */; };
 		299522561BBF125A00859F49 /* CCAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522491BBF125A00859F49 /* CCAFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,21 +153,21 @@
 		29D96E7D1BCC3D6000F571A5 /* CCAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224D1BBF125A00859F49 /* CCAFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E7E1BCC3D6000F571A5 /* CCAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224F1BBF125A00859F49 /* CCAFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E7F1BCC3D6000F571A5 /* CCAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522511BBF125A00859F49 /* CCAFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29D96E801BCC3D6000F571A5 /* CCAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* CCAFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29D96E801BCC3D6000F571A5 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E811BCC3D7200F571A5 /* CCAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522461BBF125A00859F49 /* CCAFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E821BCC3D7200F571A5 /* CCAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522491BBF125A00859F49 /* CCAFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E831BCC3D7200F571A5 /* CCAFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224B1BBF125A00859F49 /* CCAFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E841BCC3D7200F571A5 /* CCAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224D1BBF125A00859F49 /* CCAFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E851BCC3D7200F571A5 /* CCAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224F1BBF125A00859F49 /* CCAFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E861BCC3D7200F571A5 /* CCAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522511BBF125A00859F49 /* CCAFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29D96E871BCC3D7200F571A5 /* CCAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* CCAFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29D96E871BCC3D7200F571A5 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E881BCC3D7D00F571A5 /* CCAFHTTPSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522461BBF125A00859F49 /* CCAFHTTPSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E891BCC3D7D00F571A5 /* CCAFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522491BBF125A00859F49 /* CCAFNetworkReachabilityManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E8A1BCC3D7D00F571A5 /* CCAFSecurityPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224B1BBF125A00859F49 /* CCAFSecurityPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E8B1BCC3D7D00F571A5 /* CCAFURLRequestSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224D1BBF125A00859F49 /* CCAFURLRequestSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E8C1BCC3D7D00F571A5 /* CCAFURLResponseSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995224F1BBF125A00859F49 /* CCAFURLResponseSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E8D1BCC3D7D00F571A5 /* CCAFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522511BBF125A00859F49 /* CCAFURLSessionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29D96E8E1BCC3D7D00F571A5 /* CCAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* CCAFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29D96E8E1BCC3D7D00F571A5 /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995223C1BBF104D00859F49 /* AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E941BCC406B00F571A5 /* CCAFAutoPurgingImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522861BBF13C700859F49 /* CCAFAutoPurgingImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E951BCC406B00F571A5 /* CCAFImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 299522881BBF13C700859F49 /* CCAFImageDownloader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29D96E961BCC406B00F571A5 /* UIActivityIndicatorView+CCAFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2995228C1BBF13C700859F49 /* UIActivityIndicatorView+CCAFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -263,7 +263,7 @@
 		298D7CDF1BC2CB5A00FD3B3E /* ADNNetServerTrustChain */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ADNNetServerTrustChain; sourceTree = "<group>"; };
 		298D7CE21BC2CB7C00FD3B3E /* HTTPBinOrgServerTrustChain */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HTTPBinOrgServerTrustChain; sourceTree = "<group>"; };
 		299522391BBF104D00859F49 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2995223C1BBF104D00859F49 /* CCAFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCAFNetworking.h; path = ../Framework/CCAFNetworking.h; sourceTree = "<group>"; };
+		2995223C1BBF104D00859F49 /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = ../Framework/AFNetworking.h; sourceTree = "<group>"; };
 		2995223E1BBF104D00859F49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Framework/Info.plist; sourceTree = "<group>"; };
 		299522461BBF125A00859F49 /* CCAFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCAFHTTPSessionManager.h; sourceTree = "<group>"; };
 		299522471BBF125A00859F49 /* CCAFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCAFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 		2995223B1BBF104D00859F49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2995223C1BBF104D00859F49 /* CCAFNetworking.h */,
+				2995223C1BBF104D00859F49 /* AFNetworking.h */,
 				2995223E1BBF104D00859F49 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -583,7 +583,7 @@
 				29D96E981BCC406B00F571A5 /* UIImage+CCAFNetworking.h in Headers */,
 				29D96E991BCC406B00F571A5 /* UIImageView+CCAFNetworking.h in Headers */,
 				29D96E9A1BCC406B00F571A5 /* UIProgressView+CCAFNetworking.h in Headers */,
-				29D96E8E1BCC3D7D00F571A5 /* CCAFNetworking.h in Headers */,
+				29D96E8E1BCC3D7D00F571A5 /* AFNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +602,7 @@
 				2995225E1BBF125A00859F49 /* CCAFURLSessionManager.h in Headers */,
 				2995225C1BBF125A00859F49 /* CCAFURLResponseSerialization.h in Headers */,
 				299522A21BBF13C700859F49 /* UIActivityIndicatorView+CCAFNetworking.h in Headers */,
-				2995223D1BBF104D00859F49 /* CCAFNetworking.h in Headers */,
+				2995223D1BBF104D00859F49 /* AFNetworking.h in Headers */,
 				299522B01BBF13C700859F49 /* UIWebView+CCAFNetworking.h in Headers */,
 				299522AC1BBF13C700859F49 /* UIProgressView+CCAFNetworking.h in Headers */,
 				299522A61BBF13C700859F49 /* UIButton+CCAFNetworking.h in Headers */,
@@ -620,7 +620,7 @@
 				29D96E7D1BCC3D6000F571A5 /* CCAFURLRequestSerialization.h in Headers */,
 				29D96E7E1BCC3D6000F571A5 /* CCAFURLResponseSerialization.h in Headers */,
 				29D96E7F1BCC3D6000F571A5 /* CCAFURLSessionManager.h in Headers */,
-				29D96E801BCC3D6000F571A5 /* CCAFNetworking.h in Headers */,
+				29D96E801BCC3D6000F571A5 /* AFNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,7 +634,7 @@
 				29D96E841BCC3D7200F571A5 /* CCAFURLRequestSerialization.h in Headers */,
 				29D96E851BCC3D7200F571A5 /* CCAFURLResponseSerialization.h in Headers */,
 				29D96E861BCC3D7200F571A5 /* CCAFURLSessionManager.h in Headers */,
-				29D96E871BCC3D7200F571A5 /* CCAFNetworking.h in Headers */,
+				29D96E871BCC3D7200F571A5 /* AFNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
