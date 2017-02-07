@@ -1,4 +1,4 @@
-// AFPropertyListRequestSerializerTests.m
+// CCAFPropertyListRequestSerializerTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,19 +19,19 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFURLRequestSerialization.h"
+#import "CCAFURLRequestSerialization.h"
 
-@interface AFPropertyListRequestSerializerTests : AFTestCase
-@property (nonatomic, strong) AFPropertyListRequestSerializer *requestSerializer;
+@interface CCAFPropertyListRequestSerializerTests : CCAFTestCase
+@property (nonatomic, strong) CCAFPropertyListRequestSerializer *requestSerializer;
 @end
 
-@implementation AFPropertyListRequestSerializerTests
+@implementation CCAFPropertyListRequestSerializerTests
 
 - (void)setUp {
     [super setUp];
-    self.requestSerializer = [AFPropertyListRequestSerializer serializer];
+    self.requestSerializer = [CCAFPropertyListRequestSerializer serializer];
 }
 
 #pragma mark -

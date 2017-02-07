@@ -22,7 +22,7 @@
 
 #import "User.h"
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
-//#import "AFHTTPRequestOperation.h"
+//#import "CCAFHTTPRequestOperation.h"
 #endif
 
 NSString * const kUserProfileImageDidLoadNotification = @"com.alamofire.user.profile-image.loaded";
@@ -33,7 +33,7 @@ NSString * const kUserProfileImageDidLoadNotification = @"com.alamofire.user.pro
 @property (readwrite, nonatomic, copy) NSString *avatarImageURLString;
 
 //#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
-//@property (readwrite, nonatomic, strong) AFHTTPRequestOperation *avatarImageRequestOperation;
+//@property (readwrite, nonatomic, strong) CCAFHTTPRequestOperation *avatarImageRequestOperation;
 //#endif
 @end
 
@@ -76,9 +76,9 @@ NSString * const kUserProfileImageDidLoadNotification = @"com.alamofire.user.pro
 //	if (!_profileImage && !_avatarImageRequestOperation) {
 //        NSMutableURLRequest *mutableRequest = [NSMutableURLRequest requestWithURL:self.avatarImageURL];
 //        [mutableRequest setValue:@"image/*" forHTTPHeaderField:@"Accept"];
-//        AFHTTPRequestOperation *imageRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:mutableRequest];
-//        imageRequestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-//        [imageRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, NSImage *responseImage) {
+//        CCAFHTTPRequestOperation *imageRequestOperation = [[CCAFHTTPRequestOperation alloc] initWithRequest:mutableRequest];
+//        imageRequestOperation.responseSerializer = [CCAFImageResponseSerializer serializer];
+//        [imageRequestOperation setCompletionBlockWithSuccess:^(CCAFHTTPRequestOperation *operation, NSImage *responseImage) {
 //            self.profileImage = responseImage;
 //
 //			_avatarImageRequestOperation = nil;
@@ -105,9 +105,9 @@ NSString * const kUserProfileImageDidLoadNotification = @"com.alamofire.user.pro
 @implementation User (NSCoding)
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:(NSInteger)self.userID forKey:@"AF.userID"];
-    [aCoder encodeObject:self.username forKey:@"AF.username"];
-    [aCoder encodeObject:self.avatarImageURLString forKey:@"AF.avatarImageURLString"];
+    [aCoder encodeInteger:(NSInteger)self.userID forKey:@"CCAF.userID"];
+    [aCoder encodeObject:self.username forKey:@"CCAF.username"];
+    [aCoder encodeObject:self.avatarImageURLString forKey:@"CCAF.avatarImageURLString"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -116,9 +116,9 @@ NSString * const kUserProfileImageDidLoadNotification = @"com.alamofire.user.pro
         return nil;
     }
     
-    self.userID = (NSUInteger)[aDecoder decodeIntegerForKey:@"AF.userID"];
-    self.username = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"AF.username"];
-    self.avatarImageURLString = [aDecoder decodeObjectOfClass:[User class] forKey:@"AF.avatarImageURLString"];
+    self.userID = (NSUInteger)[aDecoder decodeIntegerForKey:@"CCAF.userID"];
+    self.username = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"CCAF.username"];
+    self.avatarImageURLString = [aDecoder decodeObjectOfClass:[User class] forKey:@"CCAF.avatarImageURLString"];
     
     return self;
 }

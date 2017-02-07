@@ -1,4 +1,4 @@
-// AFAutoPurgingImageCacheTests.m
+// CCAFAutoPurgingImageCacheTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,18 +20,18 @@
 // THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
-#import "AFAutoPurgingImageCache.h"
+#import "CCAFAutoPurgingImageCache.h"
 
-@interface AFAutoPurgingImageCacheTests : XCTestCase
-@property (nonatomic, strong) AFAutoPurgingImageCache *cache;
+@interface CCAFAutoPurgingImageCacheTests : XCTestCase
+@property (nonatomic, strong) CCAFAutoPurgingImageCache *cache;
 @property (nonatomic, strong) UIImage *testImage;
 @end
 
-@implementation AFAutoPurgingImageCacheTests
+@implementation CCAFAutoPurgingImageCacheTests
 
 - (void)setUp {
     [super setUp];
-    self.cache = [[AFAutoPurgingImageCache alloc] initWithMemoryCapacity:100 * 1024 * 1024
+    self.cache = [[CCAFAutoPurgingImageCache alloc] initWithMemoryCapacity:100 * 1024 * 1024
                                                  preferredMemoryCapacity:60 * 1024 * 1024];
 
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"logo" ofType:@"png"];
@@ -185,8 +185,8 @@
 - (void)testThatImagesArePurgedWhenCapcityIsReached {
     UInt64 imageSize = 1020000;
     UInt64 numberOfImages = 10;
-    UInt64 numberOfImagesAfterPurge = 6;
-    self.cache = [[AFAutoPurgingImageCache alloc] initWithMemoryCapacity:numberOfImages * imageSize preferredMemoryCapacity:numberOfImagesAfterPurge * imageSize];
+    UInt64 numberOfImagesCCAFterPurge = 6;
+    self.cache = [[CCAFAutoPurgingImageCache alloc] initWithMemoryCapacity:numberOfImages * imageSize preferredMemoryCapacity:numberOfImagesCCAFterPurge * imageSize];
     NSUInteger index = 1;
     while (YES) {
         NSString * identifier = [NSString stringWithFormat:@"image-%ld",(long)index];
@@ -194,7 +194,7 @@
         if (index <= numberOfImages) {
             XCTAssertTrue(self.cache.memoryUsage == index * imageSize);
         } else {
-            XCTAssertTrue(self.cache.memoryUsage == numberOfImagesAfterPurge * imageSize);
+            XCTAssertTrue(self.cache.memoryUsage == numberOfImagesCCAFterPurge * imageSize);
             break;
         }
         index++;
@@ -204,8 +204,8 @@
 - (void)testThatPrioritizedImagesWithOldestLastAccessDatesAreRemovedDuringPurge {
     UInt64 imageSize = 1020000;
     UInt64 numberOfImages = 10;
-    UInt64 numberOfImagesAfterPurge = 6;
-    self.cache = [[AFAutoPurgingImageCache alloc] initWithMemoryCapacity:numberOfImages * imageSize preferredMemoryCapacity:numberOfImagesAfterPurge * imageSize];
+    UInt64 numberOfImagesCCAFterPurge = 6;
+    self.cache = [[CCAFAutoPurgingImageCache alloc] initWithMemoryCapacity:numberOfImages * imageSize preferredMemoryCapacity:numberOfImagesCCAFterPurge * imageSize];
     for (NSUInteger index = 0; index < numberOfImages; index ++) {
         NSString * identifier = [NSString stringWithFormat:@"image-%ld",(long)index];
         [self.cache addImage:self.testImage withIdentifier:identifier];

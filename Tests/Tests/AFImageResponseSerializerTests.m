@@ -1,4 +1,4 @@
-// AFImageResponseSerializerTests.m
+// CCAFImageResponseSerializerTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,23 +20,23 @@
 // THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
-#import "AFTestCase.h"
-#import "AFURLResponseSerialization.h"
+#import "CCAFTestCase.h"
+#import "CCAFURLResponseSerialization.h"
 
-@interface AFImageResponseSerializerTests : AFTestCase
+@interface CCAFImageResponseSerializerTests : CCAFTestCase
 
 @end
 
-@implementation AFImageResponseSerializerTests
+@implementation CCAFImageResponseSerializerTests
 
 #pragma mark NSCopying
 
 - (void)testImageSerializerCanBeCopied {
-    AFImageResponseSerializer *responseSerializer = [AFImageResponseSerializer serializer];
+    CCAFImageResponseSerializer *responseSerializer = [CCAFImageResponseSerializer serializer];
     [responseSerializer setAcceptableContentTypes:[NSSet setWithObject:@"test/type"]];
     [responseSerializer setAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:100]];
 
-    AFImageResponseSerializer *copiedSerializer = [responseSerializer copy];
+    CCAFImageResponseSerializer *copiedSerializer = [responseSerializer copy];
     XCTAssertNotNil(copiedSerializer);
     XCTAssertNotEqual(copiedSerializer, responseSerializer);
     XCTAssertEqual(copiedSerializer.acceptableContentTypes, responseSerializer.acceptableContentTypes);
@@ -51,16 +51,16 @@
 #pragma mark NSSecureCoding
 
 - (void)testImageSerializerSupportsSecureCoding {
-    XCTAssertTrue([AFImageResponseSerializer supportsSecureCoding]);
+    XCTAssertTrue([CCAFImageResponseSerializer supportsSecureCoding]);
 }
 
 - (void)testImageSerializerCanBeArchivedAndUnarchived {
-    AFImageResponseSerializer   *responseSerializer = [AFImageResponseSerializer serializer];
+    CCAFImageResponseSerializer   *responseSerializer = [CCAFImageResponseSerializer serializer];
     NSData  *archive    = nil;
     
     archive = [NSKeyedArchiver archivedDataWithRootObject:responseSerializer];
     XCTAssertNotNil(archive);
-    AFImageResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
+    CCAFImageResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
     XCTAssertNotNil(unarchivedSerializer);
     XCTAssertNotEqual(unarchivedSerializer, responseSerializer);
     XCTAssertTrue([unarchivedSerializer.acceptableContentTypes isEqualToSet:responseSerializer.acceptableContentTypes]);
@@ -74,7 +74,7 @@
 }
 
 - (void)testImageSerializerCanBeArchivedAndUnarchivedWithNonDefaultPropertyValues {
-    AFImageResponseSerializer   *responseSerializer = [AFImageResponseSerializer serializer];
+    CCAFImageResponseSerializer   *responseSerializer = [CCAFImageResponseSerializer serializer];
     NSData  *archive    = nil;
     
     // Customize the default property values
@@ -85,7 +85,7 @@
     
     archive = [NSKeyedArchiver archivedDataWithRootObject:responseSerializer];
     XCTAssertNotNil(archive);
-    AFImageResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
+    CCAFImageResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:archive];
     XCTAssertNotNil(unarchivedSerializer);
     XCTAssertNotEqual(unarchivedSerializer, responseSerializer);
 

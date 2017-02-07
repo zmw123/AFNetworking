@@ -1,4 +1,4 @@
-// AFNetworkActivityManagerTests.m
+// CCAFNetworkActivityManagerTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,26 +19,26 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFNetworkActivityIndicatorManager.h"
-#import "AFHTTPSessionManager.h"
+#import "CCAFNetworkActivityIndicatorManager.h"
+#import "CCAFHTTPSessionManager.h"
 
-@interface AFNetworkActivityManagerTests : AFTestCase
-@property (nonatomic, strong) AFNetworkActivityIndicatorManager *networkActivityIndicatorManager;
-@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@interface CCAFNetworkActivityManagerTests : CCAFTestCase
+@property (nonatomic, strong) CCAFNetworkActivityIndicatorManager *networkActivityIndicatorManager;
+@property (nonatomic, strong) CCAFHTTPSessionManager *sessionManager;
 @end
 
 #pragma mark -
 
-@implementation AFNetworkActivityManagerTests
+@implementation CCAFNetworkActivityManagerTests
 
 - (void)setUp {
     [super setUp];
 
-    self.sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    self.sessionManager = [[CCAFHTTPSessionManager alloc] initWithBaseURL:self.baseURL sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
-    self.networkActivityIndicatorManager = [[AFNetworkActivityIndicatorManager alloc] init];
+    self.networkActivityIndicatorManager = [[CCAFNetworkActivityIndicatorManager alloc] init];
     self.networkActivityIndicatorManager.enabled = YES;
 }
 

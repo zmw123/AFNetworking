@@ -1,4 +1,4 @@
-// AFHTTPResponseSerializationTests.m
+// CCAFHTTPResponseSerializationTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFURLResponseSerialization.h"
+#import "CCAFURLResponseSerialization.h"
 
-@interface AFHTTPResponseSerializationTests : AFTestCase
-@property (nonatomic, strong) AFHTTPResponseSerializer *responseSerializer;
+@interface CCAFHTTPResponseSerializationTests : CCAFTestCase
+@property (nonatomic, strong) CCAFHTTPResponseSerializer *responseSerializer;
 @end
 
-@implementation AFHTTPResponseSerializationTests
+@implementation CCAFHTTPResponseSerializationTests
 
 - (void)setUp {
     [super setUp];
-    self.responseSerializer = [AFHTTPResponseSerializer serializer];
+    self.responseSerializer = [CCAFHTTPResponseSerializer serializer];
 }
 
 #pragma mark -
 
-- (void)testThatAFHTTPResponseSerializationHandlesAll2XXCodes {
+- (void)testThatCCAFHTTPResponseSerializationHandlesAll2XXCodes {
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
     [indexSet enumerateIndexesUsingBlock:^(NSUInteger statusCode, BOOL *stop) {
         NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:(NSInteger)statusCode HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"text/html"}];
@@ -50,7 +50,7 @@
     }];
 }
 
-- (void)testThatAFHTTPResponseSerializationSucceedsWith205WithNoResponseContentTypeAndNoResponseData {
+- (void)testThatCCAFHTTPResponseSerializationSucceedsWith205WithNoResponseContentTypeAndNoResponseData {
     NSInteger statusCode = 205;
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:statusCode HTTPVersion:@"1.1" headerFields:@{}];
 
@@ -65,7 +65,7 @@
     XCTAssertFalse([self.responseSerializer validateResponse:response data:[@"test" dataUsingEncoding:NSUTF8StringEncoding] error:&error]);
 }
 
-- (void)testThatAFHTTPResponseSerializationFailsWith205WithNoResponseContentTypeAndResponseData {
+- (void)testThatCCAFHTTPResponseSerializationFailsWith205WithNoResponseContentTypeAndResponseData {
     NSInteger statusCode = 205;
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:statusCode HTTPVersion:@"1.1" headerFields:@{}];
 
@@ -78,7 +78,7 @@
     XCTAssertNotNil(error, @"Error handling status code %@", @(statusCode));
 }
 
-- (void)testThatAFHTTPResponseSerializationFailsAll4XX5XXStatusCodes {
+- (void)testThatCCAFHTTPResponseSerializationFailsAll4XX5XXStatusCodes {
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(400, 200)];
     [indexSet enumerateIndexesUsingBlock:^(NSUInteger statusCode, BOOL *stop) {
         NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:(NSInteger)statusCode HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"text/html"}];
@@ -103,7 +103,7 @@
 }
 
 - (void)testCanBeCopied {
-    AFHTTPResponseSerializer *copiedSerializer = [self.responseSerializer copy];
+    CCAFHTTPResponseSerializer *copiedSerializer = [self.responseSerializer copy];
     XCTAssertNotNil(copiedSerializer);
     XCTAssertNotEqual(copiedSerializer, self.responseSerializer);
     XCTAssertTrue(copiedSerializer.acceptableContentTypes.count == self.responseSerializer.acceptableContentTypes.count);
@@ -111,7 +111,7 @@
 }
 
 - (void)testSupportsSecureCoding {
-    XCTAssertTrue([AFHTTPResponseSerializer supportsSecureCoding]);
+    XCTAssertTrue([CCAFHTTPResponseSerializer supportsSecureCoding]);
 }
 
 @end

@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 #import "AppDelegate.h"
-@import AFNetworking;
+@import CCAFNetworking;
 
 #import "Post.h"
 #import "User.h"

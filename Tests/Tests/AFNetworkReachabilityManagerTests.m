@@ -1,4 +1,4 @@
-// AFNetworkReachabilityManagerTests.h
+// CCAFNetworkReachabilityManagerTests.h
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,24 +19,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFNetworkReachabilityManager.h"
+#import "CCAFNetworkReachabilityManager.h"
 #import <netinet/in.h>
 
-@interface AFNetworkReachabilityManagerTests : AFTestCase
-@property (nonatomic, strong) AFNetworkReachabilityManager *addressReachability;
-@property (nonatomic, strong) AFNetworkReachabilityManager *domainReachability;
+@interface CCAFNetworkReachabilityManagerTests : CCAFTestCase
+@property (nonatomic, strong) CCAFNetworkReachabilityManager *addressReachability;
+@property (nonatomic, strong) CCAFNetworkReachabilityManager *domainReachability;
 @end
 
-@implementation AFNetworkReachabilityManagerTests
+@implementation CCAFNetworkReachabilityManagerTests
 
 - (void)setUp {
     [super setUp];
 
     //both of these manager objects should always be reachable when the tests are run
-    self.domainReachability = [AFNetworkReachabilityManager managerForDomain:@"localhost"];
-    self.addressReachability = [AFNetworkReachabilityManager manager];
+    self.domainReachability = [CCAFNetworkReachabilityManager managerForDomain:@"localhost"];
+    self.addressReachability = [CCAFNetworkReachabilityManager manager];
 }
 
 - (void)tearDown
@@ -48,24 +48,24 @@
 }
 
 - (void)testAddressReachabilityStartsInUnknownState {
-    XCTAssertEqual(self.addressReachability.networkReachabilityStatus, AFNetworkReachabilityStatusUnknown,
+    XCTAssertEqual(self.addressReachability.networkReachabilityStatus, CCAFNetworkReachabilityStatusUnknown,
                    @"Reachability should start in an unknown state");
 }
 
 - (void)testDomainReachabilityStartsInUnknownState {
-    XCTAssertEqual(self.domainReachability.networkReachabilityStatus, AFNetworkReachabilityStatusUnknown,
+    XCTAssertEqual(self.domainReachability.networkReachabilityStatus, CCAFNetworkReachabilityStatusUnknown,
                    @"Reachability should start in an unknown state");
 }
 
-- (void)verifyReachabilityNotificationGetsPostedWithManager:(AFNetworkReachabilityManager *)manager
+- (void)verifyReachabilityNotificationGetsPostedWithManager:(CCAFNetworkReachabilityManager *)manager
 {
-    [self expectationForNotification:AFNetworkingReachabilityDidChangeNotification
+    [self expectationForNotification:CCAFNetworkingReachabilityDidChangeNotification
                               object:nil
                              handler:^BOOL(NSNotification *note) {
-                                 AFNetworkReachabilityStatus status;
-                                 status = [note.userInfo[AFNetworkingReachabilityNotificationStatusItem] integerValue];
-                                 BOOL isReachable = (status == AFNetworkReachabilityStatusReachableViaWiFi
-                                                     || status == AFNetworkReachabilityStatusReachableViaWWAN);
+                                 CCAFNetworkReachabilityStatus status;
+                                 status = [note.userInfo[CCAFNetworkingReachabilityNotificationStatusItem] integerValue];
+                                 BOOL isReachable = (status == CCAFNetworkReachabilityStatusReachableViaWiFi
+                                                     || status == CCAFNetworkReachabilityStatusReachableViaWWAN);
                                  return isReachable;
                              }];
 
@@ -82,13 +82,13 @@
     [self verifyReachabilityNotificationGetsPostedWithManager:self.domainReachability];
 }
 
-- (void)verifyReachabilityStatusBlockGetsCalledWithManager:(AFNetworkReachabilityManager *)manager
+- (void)verifyReachabilityStatusBlockGetsCalledWithManager:(CCAFNetworkReachabilityManager *)manager
 {
     __weak __block XCTestExpectation *expectation = [self expectationWithDescription:@"reachability status change block gets called"];
 
-    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        BOOL isReachable = (status == AFNetworkReachabilityStatusReachableViaWiFi
-                            || status == AFNetworkReachabilityStatusReachableViaWWAN);
+    [manager setReachabilityStatusChangeBlock:^(CCAFNetworkReachabilityStatus status) {
+        BOOL isReachable = (status == CCAFNetworkReachabilityStatusReachableViaWiFi
+                            || status == CCAFNetworkReachabilityStatusReachableViaWWAN);
         if (isReachable) {
             [expectation fulfill];
             expectation = nil;

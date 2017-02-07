@@ -23,7 +23,7 @@
 #import "Post.h"
 #import "User.h"
 
-#import "AFAppDotNetAPIClient.h"
+#import "CCAFAppDotNetAPIClient.h"
 
 @implementation Post
 
@@ -44,7 +44,7 @@
 #pragma mark -
 
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block {
-    return [[AFAppDotNetAPIClient sharedClient] GET:@"stream/0/posts/stream/global" parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    return [[CCAFAppDotNetAPIClient sharedClient] GET:@"stream/0/posts/stream/global" parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSArray *postsFromResponse = [JSON valueForKeyPath:@"data"];
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
         for (NSDictionary *attributes in postsFromResponse) {
@@ -67,9 +67,9 @@
 @implementation Post (NSCoding)
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeInteger:(NSInteger)self.postID forKey:@"AF.postID"];
-    [aCoder encodeObject:self.text forKey:@"AF.text"];
-    [aCoder encodeObject:self.user forKey:@"AF.user"];
+    [aCoder encodeInteger:(NSInteger)self.postID forKey:@"CCAF.postID"];
+    [aCoder encodeObject:self.text forKey:@"CCAF.text"];
+    [aCoder encodeObject:self.user forKey:@"CCAF.user"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -78,9 +78,9 @@
         return nil;
     }
     
-    self.postID = (NSUInteger)[aDecoder decodeIntegerForKey:@"AF.postID"];
-    self.text = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"AF.text"];
-    self.user = [aDecoder decodeObjectOfClass:[User class] forKey:@"AF.user"];
+    self.postID = (NSUInteger)[aDecoder decodeIntegerForKey:@"CCAF.postID"];
+    self.text = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"CCAF.text"];
+    self.user = [aDecoder decodeObjectOfClass:[User class] forKey:@"CCAF.user"];
     
     return self;
 }

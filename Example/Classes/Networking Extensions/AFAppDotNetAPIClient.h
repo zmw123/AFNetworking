@@ -1,4 +1,4 @@
-// AFAppDotNetAPIClient.h
+// CCAFAppDotNetAPIClient.h
 //
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 // 
@@ -21,9 +21,9 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-@import AFNetworking;
+@import CCAFNetworking;
 
-@interface AFAppDotNetAPIClient : AFHTTPSessionManager
+@interface CCAFAppDotNetAPIClient : CCAFHTTPSessionManager
 
 + (instancetype)sharedClient;
 

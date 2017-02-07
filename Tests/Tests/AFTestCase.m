@@ -1,4 +1,4 @@
-// AFTestCase.m
+// CCAFTestCase.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,9 +19,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-@implementation AFTestCase
+@implementation CCAFTestCase
 
 - (void)setUp {
     [super setUp];

@@ -1,4 +1,4 @@
-// AFURLSessionManagerTests.m
+// CCAFURLSessionManagerTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,14 +20,14 @@
 // THE SOFTWARE.
 
 #import <XCTest/XCTest.h>
-#import "AFTestCase.h"
-#import "AFURLResponseSerialization.h"
+#import "CCAFTestCase.h"
+#import "CCAFURLResponseSerialization.h"
 
-@interface AFCompoundResponseSerializerTests : AFTestCase
+@interface CCAFCompoundResponseSerializerTests : CCAFTestCase
 
 @end
 
-@implementation AFCompoundResponseSerializerTests
+@implementation CCAFCompoundResponseSerializerTests
 
 - (void)setUp {
     [super setUp];
@@ -35,7 +35,7 @@
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // Put teardown code here. This method is called CCAFter the invocation of each test method in the class.
     [super tearDown];
 }
 
@@ -43,9 +43,9 @@
 
 - (void)testCompoundSerializerProperlySerializesResponse {
 
-    AFImageResponseSerializer *imageSerializer = [AFImageResponseSerializer serializer];
-    AFJSONResponseSerializer *jsonSerializer = [AFJSONResponseSerializer serializer];
-    AFCompoundResponseSerializer *compoundSerializer = [AFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
+    CCAFImageResponseSerializer *imageSerializer = [CCAFImageResponseSerializer serializer];
+    CCAFJSONResponseSerializer *jsonSerializer = [CCAFJSONResponseSerializer serializer];
+    CCAFCompoundResponseSerializer *compoundSerializer = [CCAFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
 
     NSData *data = [NSJSONSerialization dataWithJSONObject:@{@"key":@"value"} options:(NSJSONWritingOptions)0 error:nil];
     NSURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:[NSURL URLWithString:@"http://test.com"]
@@ -61,34 +61,34 @@
 }
 
 - (void)testCompoundSerializerCanBeCopied {
-    AFImageResponseSerializer *imageSerializer = [AFImageResponseSerializer serializer];
-    AFJSONResponseSerializer *jsonSerializer = [AFJSONResponseSerializer serializer];
-    AFCompoundResponseSerializer *compoundSerializer = [AFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
+    CCAFImageResponseSerializer *imageSerializer = [CCAFImageResponseSerializer serializer];
+    CCAFJSONResponseSerializer *jsonSerializer = [CCAFJSONResponseSerializer serializer];
+    CCAFCompoundResponseSerializer *compoundSerializer = [CCAFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
     [compoundSerializer setAcceptableStatusCodes:[NSIndexSet indexSetWithIndex:100]];
     [compoundSerializer setAcceptableContentTypes:[NSSet setWithObject:@"test/type"]];
 
-    AFCompoundResponseSerializer *copiedSerializer = [compoundSerializer copy];
+    CCAFCompoundResponseSerializer *copiedSerializer = [compoundSerializer copy];
     XCTAssertNotNil(copiedSerializer);
     XCTAssertNotEqual(compoundSerializer, copiedSerializer);
     XCTAssertTrue(compoundSerializer.responseSerializers.count == copiedSerializer.responseSerializers.count);
-    XCTAssertTrue([NSStringFromClass([[copiedSerializer.responseSerializers objectAtIndex:0] class]) isEqualToString:NSStringFromClass([AFImageResponseSerializer class])]);
-    XCTAssertTrue([NSStringFromClass([[copiedSerializer.responseSerializers objectAtIndex:1] class]) isEqualToString:NSStringFromClass([AFJSONResponseSerializer class])]);
+    XCTAssertTrue([NSStringFromClass([[copiedSerializer.responseSerializers objectAtIndex:0] class]) isEqualToString:NSStringFromClass([CCAFImageResponseSerializer class])]);
+    XCTAssertTrue([NSStringFromClass([[copiedSerializer.responseSerializers objectAtIndex:1] class]) isEqualToString:NSStringFromClass([CCAFJSONResponseSerializer class])]);
     XCTAssertEqual(compoundSerializer.acceptableStatusCodes, copiedSerializer.acceptableStatusCodes);
     XCTAssertEqual(compoundSerializer.acceptableContentTypes, copiedSerializer.acceptableContentTypes);
 }
 
 - (void)testCompoundSerializerCanBeArchivedAndUnarchived {
-    AFImageResponseSerializer *imageSerializer = [AFImageResponseSerializer serializer];
-    AFJSONResponseSerializer *jsonSerializer = [AFJSONResponseSerializer serializer];
-    AFCompoundResponseSerializer *compoundSerializer = [AFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
+    CCAFImageResponseSerializer *imageSerializer = [CCAFImageResponseSerializer serializer];
+    CCAFJSONResponseSerializer *jsonSerializer = [CCAFJSONResponseSerializer serializer];
+    CCAFCompoundResponseSerializer *compoundSerializer = [CCAFCompoundResponseSerializer compoundSerializerWithResponseSerializers:@[imageSerializer, jsonSerializer]];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:compoundSerializer];
     XCTAssertNotNil(data);
-    AFCompoundResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    CCAFCompoundResponseSerializer *unarchivedSerializer = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     XCTAssertNotNil(unarchivedSerializer);
     XCTAssertNotEqual(unarchivedSerializer, compoundSerializer);
     XCTAssertTrue(compoundSerializer.responseSerializers.count == compoundSerializer.responseSerializers.count);
-    XCTAssertTrue([NSStringFromClass([[unarchivedSerializer.responseSerializers objectAtIndex:0] class]) isEqualToString:NSStringFromClass([AFImageResponseSerializer class])]);
-    XCTAssertTrue([NSStringFromClass([[unarchivedSerializer.responseSerializers objectAtIndex:1] class]) isEqualToString:NSStringFromClass([AFJSONResponseSerializer class])]);
+    XCTAssertTrue([NSStringFromClass([[unarchivedSerializer.responseSerializers objectAtIndex:0] class]) isEqualToString:NSStringFromClass([CCAFImageResponseSerializer class])]);
+    XCTAssertTrue([NSStringFromClass([[unarchivedSerializer.responseSerializers objectAtIndex:1] class]) isEqualToString:NSStringFromClass([CCAFJSONResponseSerializer class])]);
 }
 
 @end

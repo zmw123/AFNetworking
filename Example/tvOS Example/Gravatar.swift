@@ -29,7 +29,7 @@ private extension String  {
         let utf8String = trimmedString.cString(using: String.Encoding.utf8)!
         let stringLength = CC_LONG(trimmedString.lengthOfBytes(using: String.Encoding.utf8))
         let digestLength = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLength)
+        let result = UnsCCAFeMutablePointer<CUnsignedChar>.allocate(capacity: digestLength)
 
         CC_MD5(utf8String, stringLength, result)
 

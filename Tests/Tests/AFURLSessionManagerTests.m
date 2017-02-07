@@ -1,4 +1,4 @@
-// AFURLSessionManagerTests.m
+// CCAFURLSessionManagerTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,9 +21,9 @@
 
 #import <objc/runtime.h>
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFURLSessionManager.h"
+#import "CCAFURLSessionManager.h"
 
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 #define NSFoundationVersionNumber_With_Fixed_28588583_bug 0.0
@@ -32,13 +32,13 @@
 #endif
 
 
-@interface AFURLSessionManagerTests : AFTestCase
-@property (readwrite, nonatomic, strong) AFURLSessionManager *localManager;
-@property (readwrite, nonatomic, strong) AFURLSessionManager *backgroundManager;
+@interface CCAFURLSessionManagerTests : CCAFTestCase
+@property (readwrite, nonatomic, strong) CCAFURLSessionManager *localManager;
+@property (readwrite, nonatomic, strong) CCAFURLSessionManager *backgroundManager;
 @end
 
 
-@implementation AFURLSessionManagerTests
+@implementation CCAFURLSessionManagerTests
 
 - (NSURLRequest *)bigImageURLRequest {
     NSURL *url = [NSURL URLWithString:@"http://scitechdaily.com/images/New-Image-of-the-Galaxy-Messier-94-also-Known-as-NGC-4736.jpg"];
@@ -48,7 +48,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.localManager = [[AFURLSessionManager alloc] init];
+    self.localManager = [[CCAFURLSessionManager alloc] init];
     [self.localManager.session.configuration.URLCache removeAllCachedResponses];
 
     //It was discovered that background sessions were hanging the test target
@@ -59,9 +59,9 @@
     //For now, we'll disable the unit tests for background managers until that can
     //be resolved
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_With_Fixed_28588583_bug) {
-        NSString *identifier = [NSString stringWithFormat:@"com.afnetworking.tests.urlsession.%@", [[NSUUID UUID] UUIDString]];
+        NSString *identifier = [NSString stringWithFormat:@"com.CCAFnetworking.tests.urlsession.%@", [[NSUUID UUID] UUIDString]];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
-        self.backgroundManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+        self.backgroundManager = [[CCAFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     }
     else {
         self.backgroundManager = nil;
@@ -135,9 +135,9 @@
 }
 
 - (void)testUploadTaskDoesReportProgress {
-    NSMutableString *payload = [NSMutableString stringWithString:@"AFNetworking"];
+    NSMutableString *payload = [NSMutableString stringWithString:@"CCAFNetworking"];
     while ([payload lengthOfBytesUsingEncoding:NSUTF8StringEncoding] < 20000) {
-        [payload appendString:@"AFNetworking"];
+        [payload appendString:@"CCAFNetworking"];
     }
 
     NSURL *url = [NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingString:@"/post"]];
@@ -162,9 +162,9 @@
 }
 
 - (void)testUploadProgressCanBeKVOd {
-    NSMutableString *payload = [NSMutableString stringWithString:@"AFNetworking"];
+    NSMutableString *payload = [NSMutableString stringWithString:@"CCAFNetworking"];
     while ([payload lengthOfBytesUsingEncoding:NSUTF8StringEncoding] < 20000) {
-        [payload appendString:@"AFNetworking"];
+        [payload appendString:@"CCAFNetworking"];
     }
 
     NSURL *url = [NSURL URLWithString:[[self.baseURL absoluteString] stringByAppendingString:@"/post"]];
@@ -188,8 +188,8 @@
 #pragma mark - rdar://17029580
 
 - (void)testRDAR17029580IsFixed {
-    //https://github.com/AFNetworking/AFNetworking/issues/2093
-    //https://github.com/AFNetworking/AFNetworking/pull/3205
+    //https://github.com/CCAFNetworking/CCAFNetworking/issues/2093
+    //https://github.com/CCAFNetworking/CCAFNetworking/pull/3205
     //http://openradar.appspot.com/radar?id=5871104061079552
     dispatch_queue_t serial_queue = dispatch_queue_create("com.alamofire.networking.test.RDAR17029580", DISPATCH_QUEUE_SERIAL);
     NSMutableArray *taskIDs = [[NSMutableArray alloc] init];
@@ -216,7 +216,7 @@
 #pragma mark - Issue #2702 Tests
 // The following tests are all releated to issue #2702
 
-- (void)testDidResumeNotificationIsReceivedByLocalDataTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByLocalDataTaskCCAFterResume {
     NSURLSessionDataTask *task = [self.localManager dataTaskWithRequest:[self _delayURLRequest]
                                                          uploadProgress:nil
                                                        downloadProgress:nil
@@ -224,7 +224,7 @@
     [self _testResumeNotificationForTask:task];
 }
 
-- (void)testDidSuspendNotificationIsReceivedByLocalDataTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByLocalDataTaskCCAFterSuspend {
     NSURLSessionDataTask *task = [self.localManager dataTaskWithRequest:[self _delayURLRequest]
                                                          uploadProgress:nil
                                                        downloadProgress:nil
@@ -232,7 +232,7 @@
     [self _testSuspendNotificationForTask:task];
 }
 
-- (void)testDidResumeNotificationIsReceivedByBackgroundDataTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByBackgroundDataTaskCCAFterResume {
     if (self.backgroundManager) {
         NSURLSessionDataTask *task = [self.backgroundManager dataTaskWithRequest:[self _delayURLRequest]
                                                                   uploadProgress:nil
@@ -242,7 +242,7 @@
     }
 }
 
-- (void)testDidSuspendNotificationIsReceivedByBackgroundDataTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByBackgroundDataTaskCCAFterSuspend {
     if (self.backgroundManager) {
         NSURLSessionDataTask *task = [self.backgroundManager dataTaskWithRequest:[self _delayURLRequest]
                                                                   uploadProgress:nil
@@ -252,7 +252,7 @@
     }
 }
 
-- (void)testDidResumeNotificationIsReceivedByLocalUploadTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByLocalUploadTaskCCAFterResume {
     NSURLSessionUploadTask *task = [self.localManager uploadTaskWithRequest:[self _delayURLRequest]
                                                                    fromData:[NSData data]
                                                                    progress:nil
@@ -260,7 +260,7 @@
     [self _testResumeNotificationForTask:task];
 }
 
-- (void)testDidSuspendNotificationIsReceivedByLocalUploadTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByLocalUploadTaskCCAFterSuspend {
     NSURLSessionUploadTask *task = [self.localManager uploadTaskWithRequest:[self _delayURLRequest]
                                                                    fromData:[NSData data]
                                                                    progress:nil
@@ -268,7 +268,7 @@
     [self _testSuspendNotificationForTask:task];
 }
 
-- (void)testDidResumeNotificationIsReceivedByBackgroundUploadTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByBackgroundUploadTaskCCAFterResume {
     if (self.backgroundManager) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
@@ -281,7 +281,7 @@
     }
 }
 
-- (void)testDidSuspendNotificationIsReceivedByBackgroundUploadTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByBackgroundUploadTaskCCAFterSuspend {
     if (self.backgroundManager) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"
@@ -294,7 +294,7 @@
     }
 }
 
-- (void)testDidResumeNotificationIsReceivedByLocalDownloadTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByLocalDownloadTaskCCAFterResume {
     NSURLSessionDownloadTask *task = [self.localManager downloadTaskWithRequest:[self _delayURLRequest]
                                                                 progress:nil
                                                              destination:nil
@@ -302,7 +302,7 @@
     [self _testResumeNotificationForTask:task];
 }
 
-- (void)testDidSuspendNotificationIsReceivedByLocalDownloadTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByLocalDownloadTaskCCAFterSuspend {
     NSURLSessionDownloadTask *task = [self.localManager downloadTaskWithRequest:[self _delayURLRequest]
                                                                 progress:nil
                                                              destination:nil
@@ -310,7 +310,7 @@
     [self _testSuspendNotificationForTask:task];
 }
 
-- (void)testDidResumeNotificationIsReceivedByBackgroundDownloadTaskAfterResume {
+- (void)testDidResumeNotificationIsReceivedByBackgroundDownloadTaskCCAFterResume {
     if (self.backgroundManager) {
         NSURLSessionDownloadTask *task = [self.backgroundManager downloadTaskWithRequest:[self _delayURLRequest]
                                                                                 progress:nil
@@ -320,7 +320,7 @@
     }
 }
 
-- (void)testDidSuspendNotificationIsReceivedByBackgroundDownloadTaskAfterSuspend {
+- (void)testDidSuspendNotificationIsReceivedByBackgroundDownloadTaskCCAFterSuspend {
     if (self.backgroundManager) {
         NSURLSessionDownloadTask *task = [self.backgroundManager downloadTaskWithRequest:[self _delayURLRequest]
                                                                                 progress:nil
@@ -331,11 +331,11 @@
 }
 
 - (void)testSwizzlingIsProperlyConfiguredForDummyClass {
-    IMP originalAFResumeIMP = [self _originalAFResumeImplementation];
-    IMP originalAFSuspendIMP = [self _originalAFSuspendImplementation];
-    XCTAssert(originalAFResumeIMP, @"Swizzled af_resume Method Not Found");
-    XCTAssert(originalAFSuspendIMP, @"Swizzled af_suspend Method Not Found");
-    XCTAssertNotEqual(originalAFResumeIMP, originalAFSuspendIMP, @"af_resume and af_suspend should not be equal");
+    IMP originalCCAFResumeIMP = [self _originalCCAFResumeImplementation];
+    IMP originalCCAFSuspendIMP = [self _originalCCAFSuspendImplementation];
+    XCTAssert(originalCCAFResumeIMP, @"Swizzled CCAF_resume Method Not Found");
+    XCTAssert(originalCCAFSuspendIMP, @"Swizzled CCAF_suspend Method Not Found");
+    XCTAssertNotEqual(originalCCAFResumeIMP, originalCCAFSuspendIMP, @"CCAF_resume and CCAF_suspend should not be equal");
 }
 
 - (void)testSwizzlingIsWorkingAsExpectedForForegroundDataTask {
@@ -434,7 +434,7 @@
 #pragma mark - private
 
 - (void)_testResumeNotificationForTask:(NSURLSessionTask *)task {
-    [self expectationForNotification:AFNetworkingTaskDidResumeNotification
+    [self expectationForNotification:CCAFNetworkingTaskDidResumeNotification
                               object:nil
                              handler:nil];
     [task resume];
@@ -445,7 +445,7 @@
 }
 
 - (void)_testSuspendNotificationForTask:(NSURLSessionTask *)task {
-    [self expectationForNotification:AFNetworkingTaskDidSuspendNotification
+    [self expectationForNotification:CCAFNetworkingTaskDidSuspendNotification
                               object:nil
                              handler:nil];
     [task resume];
@@ -469,12 +469,12 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-- (IMP)_originalAFResumeImplementation {
-    return method_getImplementation(class_getInstanceMethod(NSClassFromString(@"_AFURLSessionTaskSwizzling"), @selector(af_resume)));
+- (IMP)_originalCCAFResumeImplementation {
+    return method_getImplementation(class_getInstanceMethod(NSClassFromString(@"_CCAFURLSessionTaskSwizzling"), @selector(CCAF_resume)));
 }
 
-- (IMP)_originalAFSuspendImplementation {
-    return method_getImplementation(class_getInstanceMethod(NSClassFromString(@"_AFURLSessionTaskSwizzling"), @selector(af_suspend)));
+- (IMP)_originalCCAFSuspendImplementation {
+    return method_getImplementation(class_getInstanceMethod(NSClassFromString(@"_CCAFURLSessionTaskSwizzling"), @selector(CCAF_suspend)));
 }
 
 - (void)_testSwizzlingForTask:(NSURLSessionTask *)task {
@@ -482,20 +482,20 @@
 }
 
 - (void)_testSwizzlingForTaskClass:(Class)class {
-    IMP originalAFResumeIMP = [self _originalAFResumeImplementation];
-    IMP originalAFSuspendIMP = [self _originalAFSuspendImplementation];
+    IMP originalCCAFResumeIMP = [self _originalCCAFResumeImplementation];
+    IMP originalCCAFSuspendIMP = [self _originalCCAFSuspendImplementation];
     
     IMP taskResumeImp = [self _implementationForClass:class selector:@selector(resume)];
     IMP taskSuspendImp = [self _implementationForClass:class selector:@selector(suspend)];
-    XCTAssertEqual(originalAFResumeIMP, taskResumeImp, @"resume has not been properly swizzled for %@", NSStringFromClass(class));
-    XCTAssertEqual(originalAFSuspendIMP, taskSuspendImp, @"suspend has not been properly swizzled for %@", NSStringFromClass(class));
+    XCTAssertEqual(originalCCAFResumeIMP, taskResumeImp, @"resume has not been properly swizzled for %@", NSStringFromClass(class));
+    XCTAssertEqual(originalCCAFSuspendIMP, taskSuspendImp, @"suspend has not been properly swizzled for %@", NSStringFromClass(class));
     
-    IMP taskAFResumeImp = [self _implementationForClass:class selector:@selector(af_resume)];
-    IMP taskAFSuspendImp = [self _implementationForClass:class selector:@selector(af_suspend)];
-    XCTAssert(taskAFResumeImp != NULL, @"af_resume is nil. Something has not been been swizzled right for %@", NSStringFromClass(class));
-    XCTAssertNotEqual(taskAFResumeImp, taskResumeImp, @"af_resume has not been properly swizzled for %@", NSStringFromClass(class));
-    XCTAssert(taskAFSuspendImp != NULL, @"af_suspend is nil. Something has not been been swizzled right for %@", NSStringFromClass(class));
-    XCTAssertNotEqual(taskAFSuspendImp, taskSuspendImp, @"af_suspend has not been properly swizzled for %@", NSStringFromClass(class));
+    IMP taskCCAFResumeImp = [self _implementationForClass:class selector:@selector(CCAF_resume)];
+    IMP taskCCAFSuspendImp = [self _implementationForClass:class selector:@selector(CCAF_suspend)];
+    XCTAssert(taskCCAFResumeImp != NULL, @"CCAF_resume is nil. Something has not been been swizzled right for %@", NSStringFromClass(class));
+    XCTAssertNotEqual(taskCCAFResumeImp, taskResumeImp, @"CCAF_resume has not been properly swizzled for %@", NSStringFromClass(class));
+    XCTAssert(taskCCAFSuspendImp != NULL, @"CCAF_suspend is nil. Something has not been been swizzled right for %@", NSStringFromClass(class));
+    XCTAssertNotEqual(taskCCAFSuspendImp, taskSuspendImp, @"CCAF_suspend has not been properly swizzled for %@", NSStringFromClass(class));
 }
 #pragma clang diagnostic pop
 

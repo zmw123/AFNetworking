@@ -1,4 +1,4 @@
-// AFJSONSerializationTests.m
+// CCAFJSONSerializationTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,25 +19,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
+#import "CCAFTestCase.h"
 
-#import "AFURLRequestSerialization.h"
-#import "AFURLResponseSerialization.h"
+#import "CCAFURLRequestSerialization.h"
+#import "CCAFURLResponseSerialization.h"
 
-static NSData * AFJSONTestData() {
+static NSData * CCAFJSONTestData() {
     return [NSJSONSerialization dataWithJSONObject:@{@"foo": @"bar"} options:(NSJSONWritingOptions)0 error:nil];
 }
 
 #pragma mark -
 
-@interface AFJSONRequestSerializationTests : AFTestCase
-@property (nonatomic, strong) AFJSONRequestSerializer *requestSerializer;
+@interface CCAFJSONRequestSerializationTests : CCAFTestCase
+@property (nonatomic, strong) CCAFJSONRequestSerializer *requestSerializer;
 @end
 
-@implementation AFJSONRequestSerializationTests
+@implementation CCAFJSONRequestSerializationTests
 
 - (void)setUp {
-    self.requestSerializer = [[AFJSONRequestSerializer alloc] init];
+    self.requestSerializer = [[CCAFJSONRequestSerializer alloc] init];
 }
 
 #pragma mark -
@@ -84,7 +84,7 @@ static NSData * AFJSONTestData() {
     
     XCTAssertNil(request, @"Request should be nil");
     XCTAssertNotNil(error, @"Serialization error should be not nil");
-    XCTAssertEqualObjects(error.domain, AFURLRequestSerializationErrorDomain);
+    XCTAssertEqualObjects(error.domain, CCAFURLRequestSerializationErrorDomain);
     XCTAssertEqual(error.code, NSURLErrorCannotDecodeContentData);
     XCTAssertEqualObjects(error.localizedFailureReason, @"The `parameters` argument is not valid JSON.");
 }
@@ -93,15 +93,15 @@ static NSData * AFJSONTestData() {
 
 #pragma mark -
 
-@interface AFJSONResponseSerializationTests : AFTestCase
-@property (nonatomic, strong) AFJSONResponseSerializer *responseSerializer;
+@interface CCAFJSONResponseSerializationTests : CCAFTestCase
+@property (nonatomic, strong) CCAFJSONResponseSerializer *responseSerializer;
 @end
 
-@implementation AFJSONResponseSerializationTests
+@implementation CCAFJSONResponseSerializationTests
 
 - (void)setUp {
     [super setUp];
-    self.responseSerializer = [AFJSONResponseSerializer serializer];
+    self.responseSerializer = [CCAFJSONResponseSerializer serializer];
 }
 
 #pragma mark -
@@ -110,7 +110,7 @@ static NSData * AFJSONTestData() {
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:200 HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"application/json"}];
 
     NSError *error = nil;
-    [self.responseSerializer validateResponse:response data:AFJSONTestData() error:&error];
+    [self.responseSerializer validateResponse:response data:CCAFJSONTestData() error:&error];
 
     XCTAssertNil(error, @"Error handling application/json");
 }
@@ -118,7 +118,7 @@ static NSData * AFJSONTestData() {
 - (void)testThatJSONResponseSerializerAcceptsTextJSONMimeType {
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:200 HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"text/json"}];
     NSError *error = nil;
-    [self.responseSerializer validateResponse:response data:AFJSONTestData()error:&error];
+    [self.responseSerializer validateResponse:response data:CCAFJSONTestData()error:&error];
 
     XCTAssertNil(error, @"Error handling text/json");
 }
@@ -126,7 +126,7 @@ static NSData * AFJSONTestData() {
 - (void)testThatJSONResponseSerializerAcceptsTextJavaScriptMimeType {
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:200 HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"text/javascript"}];
     NSError *error = nil;
-    [self.responseSerializer validateResponse:response data:AFJSONTestData() error:&error];
+    [self.responseSerializer validateResponse:response data:CCAFJSONTestData() error:&error];
 
     XCTAssertNil(error, @"Error handling text/javascript");
 }
@@ -134,7 +134,7 @@ static NSData * AFJSONTestData() {
 - (void)testThatJSONResponseSerializerDoesNotAcceptNonStandardJSONMimeType {
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:200 HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"nonstandard/json"}];
     NSError *error = nil;
-    [self.responseSerializer validateResponse:response data:AFJSONTestData() error:&error];
+    [self.responseSerializer validateResponse:response data:CCAFJSONTestData() error:&error];
 
     XCTAssertNotNil(error, @"Error should have been thrown for nonstandard/json");
 }
@@ -142,7 +142,7 @@ static NSData * AFJSONTestData() {
 - (void)testThatJSONResponseSerializerReturnsDictionaryForValidJSONDictionary {
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:self.baseURL statusCode:200 HTTPVersion:@"1.1" headerFields:@{@"Content-Type": @"text/json"}];
     NSError *error = nil;
-    id responseObject = [self.responseSerializer responseObjectForResponse:response data:AFJSONTestData() error:&error];
+    id responseObject = [self.responseSerializer responseObjectForResponse:response data:CCAFJSONTestData() error:&error];
 
     XCTAssertNil(error, @"Serialization error should be nil");
     XCTAssert([responseObject isKindOfClass:[NSDictionary class]], @"Expected response to be a NSDictionary");
@@ -197,7 +197,7 @@ static NSData * AFJSONTestData() {
     [self.responseSerializer setReadingOptions:NSJSONReadingMutableLeaves];
     [self.responseSerializer setRemovesKeysWithNullValues:YES];
 
-    AFJSONResponseSerializer *copiedSerializer = [self.responseSerializer copy];
+    CCAFJSONResponseSerializer *copiedSerializer = [self.responseSerializer copy];
     XCTAssertNotEqual(copiedSerializer, self.responseSerializer);
     XCTAssertEqual(copiedSerializer.acceptableStatusCodes, self.responseSerializer.acceptableStatusCodes);
     XCTAssertEqual(copiedSerializer.acceptableContentTypes, self.responseSerializer.acceptableContentTypes);

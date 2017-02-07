@@ -1,4 +1,4 @@
-// AFImageDownloaderTests.m
+// CCAFImageDownloaderTests.m
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,22 +19,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
-#import "AFImageDownloader.h"
+#import "CCAFTestCase.h"
+#import "CCAFImageDownloader.h"
 
-@interface AFImageDownloaderTests : AFTestCase
+@interface CCAFImageDownloaderTests : CCAFTestCase
 @property (nonatomic, strong) NSURLRequest *pngRequest;
 @property (nonatomic, strong) NSURLRequest *jpegRequest;
-@property (nonatomic, strong) AFImageDownloader *downloader;
+@property (nonatomic, strong) CCAFImageDownloader *downloader;
 @end
 
-@implementation AFImageDownloaderTests
+@implementation CCAFImageDownloaderTests
 
 - (void)setUp {
     [super setUp];
-    self.downloader = [[AFImageDownloader alloc] init];
-    [[AFImageDownloader defaultURLCache] removeAllCachedResponses];
-    [[[AFImageDownloader defaultInstance] imageCache] removeAllImages];
+    self.downloader = [[CCAFImageDownloader alloc] init];
+    [[CCAFImageDownloader defaultURLCache] removeAllCachedResponses];
+    [[[CCAFImageDownloader defaultInstance] imageCache] removeAllImages];
     self.pngRequest = [NSURLRequest requestWithURL:self.pngURL];
     self.jpegRequest = [NSURLRequest requestWithURL:self.jpegURL];
 }
@@ -42,7 +42,7 @@
 - (void)tearDown {
     [self.downloader.sessionManager invalidateSessionCancelingTasks:YES];
     self.downloader = nil;
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // Put teardown code here. This method is called CCAFter the invocation of each test method in the class.
     [super tearDown];
     self.pngRequest = nil;
 }
@@ -50,7 +50,7 @@
 #pragma mark - Image Download
 
 - (void)testThatImageDownloaderSingletonCanBeInitialized {
-    AFImageDownloader *downloader = [AFImageDownloader defaultInstance];
+    CCAFImageDownloader *downloader = [CCAFImageDownloader defaultInstance];
     XCTAssertNotNil(downloader, @"Downloader should not be nil");
 }
 
@@ -71,7 +71,7 @@
      **/
     NSURLRequest *invalidRequest = [mutableURLRequest copy];
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request should fail"];
-    AFImageDownloadReceipt *downloadReceipt = [self.downloader
+    CCAFImageDownloadReceipt *downloadReceipt = [self.downloader
                                                downloadImageForURLRequest:invalidRequest
                                                success:nil
                                                failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
@@ -236,7 +236,7 @@
 
 - (void)testThatImageDownloadReceiptIsNilForCachedImage {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"image 1 download should succeed"];
-    AFImageDownloadReceipt *receipt1;
+    CCAFImageDownloadReceipt *receipt1;
     receipt1 = [self.downloader
                 downloadImageForURLRequest:self.pngRequest
                 success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
@@ -248,7 +248,7 @@
 
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"image 2 download should succeed"];
 
-    AFImageDownloadReceipt *receipt2;
+    CCAFImageDownloadReceipt *receipt2;
     receipt2 = [self.downloader
                 downloadImageForURLRequest:self.pngRequest
                 success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
@@ -267,7 +267,7 @@
 
     __block NSHTTPURLResponse *urlResponse1 = nil;
     __block UIImage *responseImage1 = nil;
-    AFImageDownloadReceipt *receipt1;
+    CCAFImageDownloadReceipt *receipt1;
     receipt1 = [self.downloader
                 downloadImageForURLRequest:self.pngRequest
                 success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
@@ -283,7 +283,7 @@
     NSMutableURLRequest *alteredRequest = [self.pngRequest mutableCopy];
     alteredRequest.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
 
-    AFImageDownloadReceipt *receipt2;
+    CCAFImageDownloadReceipt *receipt2;
     __block NSHTTPURLResponse *urlResponse2 = nil;
     __block UIImage *responseImage2 = nil;
     receipt2 = [self.downloader
@@ -313,7 +313,7 @@
 #pragma mark - Cancellation
 
 - (void)testThatCancellingDownloadCallsCompletionWithCancellationError {
-    AFImageDownloadReceipt *receipt;
+    CCAFImageDownloadReceipt *receipt;
     XCTestExpectation *expectation = [self expectationWithDescription:@"image download should fail"];
     __block NSError *responseError = nil;
     receipt = [self.downloader
@@ -346,7 +346,7 @@
 
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"image 2 download should fail"];
     __block NSError *responseError = nil;
-    AFImageDownloadReceipt *receipt;
+    CCAFImageDownloadReceipt *receipt;
     receipt = [self.downloader
                downloadImageForURLRequest:self.pngRequest
                success:nil
@@ -374,7 +374,7 @@
 
     for (NSString *imageURLString in imageURLStrings) {
         XCTestExpectation *expectation = [self expectationWithDescription:[NSString stringWithFormat:@"Request %@ should be cancelled", imageURLString]];
-        AFImageDownloadReceipt *receipt = [self.downloader
+        CCAFImageDownloadReceipt *receipt = [self.downloader
                                            downloadImageForURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageURLString]]
                                            success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
                                                XCTFail(@"Request %@ succeeded when it should have failed", request);
@@ -435,7 +435,7 @@
 
 - (void)testThatReceiptIDMatchesReturnedID {
     NSUUID *receiptId = [NSUUID UUID];
-    AFImageDownloadReceipt *receipt =  [self.downloader
+    CCAFImageDownloadReceipt *receipt =  [self.downloader
                                         downloadImageForURLRequest:self.jpegRequest
                                         withReceiptID:receiptId
                                         success:nil

@@ -1,4 +1,4 @@
-// AFUIRefreshControlTests.h
+// CCAFUIRefreshControlTests.h
 // Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,23 +19,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "AFTestCase.h"
-#import "UIRefreshControl+AFNetworking.h"
-#import "AFURLSessionManager.h"
+#import "CCAFTestCase.h"
+#import "UIRefreshControl+CCAFNetworking.h"
+#import "CCAFURLSessionManager.h"
 
-@interface AFUIRefreshControlTests : AFTestCase
+@interface CCAFUIRefreshControlTests : CCAFTestCase
 @property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) AFURLSessionManager *sessionManager;
+@property (nonatomic, strong) CCAFURLSessionManager *sessionManager;
 @end
 
-@implementation AFUIRefreshControlTests
+@implementation CCAFUIRefreshControlTests
 
 - (void)setUp {
     [super setUp];
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.request = [NSURLRequest requestWithURL:self.delayURL];
-    self.sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:nil];
+    self.sessionManager = [[CCAFURLSessionManager alloc] initWithSessionConfiguration:nil];
 }
 
 - (void)tearDown {
@@ -46,7 +46,7 @@
 
 - (void)testTaskDidResumeNotificationDoesNotCauseCrashForUIRCWithTask {
     XCTestExpectation *expectation = [self expectationWithDescription:@"No Crash"];
-    [self expectationForNotification:AFNetworkingTaskDidResumeNotification object:nil handler:nil];
+    [self expectationForNotification:CCAFNetworkingTaskDidResumeNotification object:nil handler:nil];
     NSURLSessionDataTask *task = [self.sessionManager
                                   dataTaskWithRequest:self.request
                                   uploadProgress:nil
@@ -65,16 +65,16 @@
 
 - (void)testTaskDidCompleteNotificationDoesNotCauseCrashForUIRCWithTask {
     XCTestExpectation *expectation = [self expectationWithDescription:@"No Crash"];
-    [self expectationForNotification:AFNetworkingTaskDidCompleteNotification object:nil handler:nil];
+    [self expectationForNotification:CCAFNetworkingTaskDidCompleteNotification object:nil handler:nil];
     NSURLSessionDataTask *task = [self.sessionManager
                                   dataTaskWithRequest:self.request
                                   uploadProgress:nil
                                   downloadProgress:nil
                                   completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                      //Without the dispatch after, this test would PASS errorenously because the test
+                                      //Without the dispatch CCAFter, this test would PASS errorenously because the test
                                       //would finish before the notification was posted to all objects that were
                                       //observing it.
-                                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                      dispatch_CCAFter(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                           [expectation fulfill];
                                       });
                                   }];
@@ -89,16 +89,16 @@
 
 - (void)testTaskDidSuspendNotificationDoesNotCauseCrashForUIRCWithTask {
     XCTestExpectation *expectation = [self expectationWithDescription:@"No Crash"];
-    [self expectationForNotification:AFNetworkingTaskDidSuspendNotification object:nil handler:nil];
+    [self expectationForNotification:CCAFNetworkingTaskDidSuspendNotification object:nil handler:nil];
     NSURLSessionDataTask *task = [self.sessionManager
                                   dataTaskWithRequest:self.request
                                   uploadProgress:nil
                                   downloadProgress:nil
                                   completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                                      //Without the dispatch after, this test would PASS errorenously because the test
+                                      //Without the dispatch CCAFter, this test would PASS errorenously because the test
                                       //would finish before the notification was posted to all objects that were
                                       //observing it.
-                                      dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                      dispatch_CCAFter(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                           [expectation fulfill];
                                       });
                                   }];
